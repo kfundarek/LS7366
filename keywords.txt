@@ -13,3 +13,5 @@ write_mode_register_1	KEYWORD2
 write_data_register	KEYWORD2
 load_counter	KEYWORD2
 load_OTR	KEYWORD2
+write_counter	KEYWORD2
+reset_counter	KEYWORD2

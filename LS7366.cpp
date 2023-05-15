@@ -209,3 +209,25 @@ long LS7366::left_extend_MSB(long val)
 
   return value_to_return;
 }
+
+
+void LS7366::write_counter(long count_value) {
+    // Write the count_value to DTR
+    digitalWrite(CS_pin, LOW);
+    SPI.transfer(WRITE_DTR);
+    SPI.transfer((byte)((count_value >> 24) & 0xFF));
+    SPI.transfer((byte)((count_value >> 16) & 0xFF));
+    SPI.transfer((byte)((count_value >> 8) & 0xFF));
+    SPI.transfer((byte)(count_value & 0xFF));
+    digitalWrite(CS_pin, HIGH);
+
+    // Load DTR to CNTR
+    digitalWrite(CS_pin, LOW);
+    SPI.transfer(LOAD_CNTR);
+    digitalWrite(CS_pin, HIGH);
+}
+
+void LS7366::reset_counter() {
+    // Reset is just writing 0 to the counter
+    write_counter(0);
+}
