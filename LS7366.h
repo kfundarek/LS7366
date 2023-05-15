@@ -78,7 +78,11 @@
 #define WRITE_MDR0 0x88 
 #define WRITE_DTR   0x98 
 #define LOAD_CNTR   0xE0   
-#define LOAD_OTR    0xE8    
+#define LOAD_OTR    0xE8   
+
+// Define the commands based on the datasheet
+#define WRITE_DTR 0x98 // WRITE command for DTR
+#define LOAD_CNTR 0xE0 // LOAD command for CNTR 
 
 
 class LS7366
@@ -99,6 +103,8 @@ class LS7366
 	void write_data_register(unsigned long val);
 	void load_counter();
 	void load_OTR();
+	void write_counter(long count_value);
+	void reset_counter();
   private:
 	byte CS_pin;
 	byte datawidth;
